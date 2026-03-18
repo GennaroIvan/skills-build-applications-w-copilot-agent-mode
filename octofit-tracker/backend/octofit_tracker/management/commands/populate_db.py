@@ -1,7 +1,5 @@
 from django.core.management.base import BaseCommand
 from octofit_tracker.models import User, Team, Activity, Leaderboard, Workout
-from django.conf import settings
-from pymongo import MongoClient
 
 class Command(BaseCommand):
     help = 'Populate the octofit_db database with test data'
@@ -42,10 +40,5 @@ class Command(BaseCommand):
         Workout.objects.create(name='Pushups', description='Upper body', difficulty='Easy')
         Workout.objects.create(name='Squats', description='Lower body', difficulty='Medium')
         Workout.objects.create(name='Plank', description='Core', difficulty='Hard')
-
-        # Ensure unique index on email for users
-        client = MongoClient(settings.DATABASES['default']['CLIENT']['host'])
-        db = client[settings.DATABASES['default']['NAME']]
-        db.user.create_index('email', unique=True)
 
         self.stdout.write(self.style.SUCCESS('octofit_db database populated with test data.'))
