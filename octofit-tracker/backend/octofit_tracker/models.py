@@ -3,7 +3,7 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    team = models.CharField(max_length=100)
+    team = models.ForeignKey('Team', on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
     def __str__(self):
         return self.name
 
