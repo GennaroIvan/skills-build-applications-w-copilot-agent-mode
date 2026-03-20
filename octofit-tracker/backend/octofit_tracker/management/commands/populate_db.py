@@ -27,10 +27,11 @@ class Command(BaseCommand):
         ]
 
         # Activities
-        Activity.objects.create(user=users[0], type='Running', duration=30, date='2023-01-01')
-        Activity.objects.create(user=users[1], type='Cycling', duration=45, date='2023-01-02')
-        Activity.objects.create(user=users[2], type='Swimming', duration=60, date='2023-01-03')
-        Activity.objects.create(user=users[3], type='Yoga', duration=40, date='2023-01-04')
+        Activity.objects.create(name='Running Club', description='Group running sessions for all fitness levels.', schedule='Mondays at 6pm', max_attendance=20)
+        Activity.objects.create(name='Cycling Club', description='Outdoor and indoor cycling for endurance and fun.', schedule='Wednesdays at 6pm', max_attendance=15)
+        Activity.objects.create(name='Swimming Club', description='Lap swimming and water fitness in the pool.', schedule='Fridays at 7am', max_attendance=12)
+        Activity.objects.create(name='Yoga Club', description='Relaxation and flexibility through guided yoga sessions.', schedule='Thursdays at 5pm', max_attendance=10)
+        Activity.objects.create(name='Manga Maniacs', description='Explore the fantastic stories of the most interesting characters from Japanese Manga (graphic novels).', schedule='Tuesdays at 7pm', max_attendance=15)
 
         # Leaderboard
         Leaderboard.objects.create(user=users[0], score=100)

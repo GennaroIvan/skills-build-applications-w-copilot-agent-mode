@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -14,12 +15,12 @@ class Team(models.Model):
         return self.name
 
 class Activity(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.CharField(max_length=100)
-    duration = models.IntegerField()
-    date = models.DateField()
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    schedule = models.CharField(max_length=100)
+    max_attendance = models.IntegerField(validators=[MinValueValidator(1)])
     def __str__(self):
-        return f"{self.user.name} - {self.type}"
+        return self.name
 
 class Leaderboard(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
